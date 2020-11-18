@@ -1,4 +1,9 @@
-## Условия задачи:
+## Развертывание
+1. Запустить: `docker-compose up -d --build`  в корневой директории проекта
+2.  Запустить `docker exec -it ecommerce-task_php chown -R www-data:www-data ./storage ./bootstrap/cache`
+3.  Запустить дамп `structure.sql`
+
+## Условия задачи
 1.  Изменить структуру базы данных ([Дамп структуры бд MySQL](https://drive.google.com/file/d/1dsc7Gg7TCUF6-858c9aNcAoZcY2dYK7q/view?usp=sharing)) так, чтобы:
     
 
@@ -157,7 +162,4 @@ Admin
   
 
 Результат задания загрузить на GitHub/BitBucket.
-## Развертывание
-1. Запустить: `docker-compose up -d --build`  в корневой директории проекта
-2.  Запустить `docker exec -it ecommerce-task_php chown -R www-data:www-data ./storage ./bootstrap/cache`
-3.  Запустить дамп `structure.sql`
+
