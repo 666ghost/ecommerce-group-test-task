@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  'nginx':
+    build: .docker/nginx
+    container_name: "${CONTAINER_PREFIX}_nginx"
+    ports:
+      - 80:80
+    volumes:
+      - ../vagrant/nginx/log/nginx/:/var/log/nginx
+      - ./monolite:/app/
+
+  'database':
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    container_name: "${CONTAINER_PREFIX}_mysql"
+    env_file:
+      - .env
+    environment:
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+    ports:
+      - 3306:3306
+
+  'redis':
+    build: .docker/redis
+    container_name: "${CONTAINER_PREFIX}_redis"
+    ports:
+      - 16380:6379
+
+  'php':
+    build: .docker/php
+    container_name: "${CONTAINER_PREFIX}_php"
+    ports:
+      - 19019:9019
+    volumes:
+      - ./monolite:/app/
+      - ../log/:/var/log/
+      - ./.docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
