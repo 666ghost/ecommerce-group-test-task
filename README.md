@@ -1,5 +1,5 @@
 ## Развертывание
-1. Запустить: `docker-compose up -d --build`  в корневой директории проекта
+1. Запустить `docker-compose up -d --build`  в корневой директории проекта
 2.  Запустить `docker exec -it ecommerce-task_php chown -R www-data:www-data ./storage ./bootstrap/cache`
 3.  Запустить дамп `structure.sql`
 
